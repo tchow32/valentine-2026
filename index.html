@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Be My Valentine 💖</title>
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      font-family: 'Arial', sans-serif;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      max-width: 350px;
+    }
+
+    img {
+      width: 100%;
+      border-radius: 15px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      color: #ff4d6d;
+      margin-bottom: 20px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      position: relative;
+    }
+
+    button {
+      padding: 10px 25px;
+      font-size: 16px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    #yes {
+      background-color: #ff4d6d;
+      color: white;
+    }
+
+    #yes:hover {
+      background-color: #ff1e4d;
+    }
+
+    #no {
+      background-color: #ccc;
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <img id="mainImage" src="images/smile.jpg">
+
+    <h1>Will you be my Valentine?</h1>
+
+    <div class="buttons">
+      <button id="yes" onclick="sayYes()">Yes </button>
+      <button id="no" onmouseover="moveNo()">No </button>
+    </div>
+  </div>
+
+<script>
+  let noAttempts = 0;
+
+  function sayYes() {
+    document.body.innerHTML = `
+      <div style="
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        height:100vh;
+        font-family:Arial;
+        background:linear-gradient(135deg, #ff9a9e, #fad0c4);
+        text-align:center;
+        padding:20px;
+      ">
+        <img 
+          src="images/feet.jpg"
+          style="
+            width:300px;
+            max-width:80%;
+            border-radius:20px;
+            margin-bottom:20px;
+            box-shadow:0 10px 20px rgba(0,0,0,0.25);
+          "
+        />
+
+        <h1 style="color:white; margin:0;">
+          yeth
+        </h1>
+        <p style="color:white; font-size:18px; margin-top:10px;">
+          You loved me first :)
+        </p>
+      </div>
+    `;
+  }
+
+  function moveNo() {
+    const noBtn = document.getElementById("no");
+    const img = document.getElementById("mainImage");
+
+    noAttempts++;
+
+    // Change image + button text at milestones
+    if (noAttempts === 5) {
+      img.src = "images/ava.jpg";
+    }
+
+    if (noAttempts === 20) {
+      img.src = "images/fish.jpg";
+      noBtn.textContent = "🐟";
+    }
+
+    const minDistance = 120;
+    const maxDistance = 250;
+
+    const angle = Math.random() * Math.PI * 2;
+    const distance =
+      Math.random() * (maxDistance - minDistance) + minDistance;
+
+    const x = Math.cos(angle) * distance;
+    const y = Math.sin(angle) * distance;
+
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+  }
+</script>
+
+
+
+
+
+</body>
+</html>
